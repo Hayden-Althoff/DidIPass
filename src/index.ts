@@ -5,7 +5,10 @@ const app: Express = express();
 
 const PORT = 3636;
 
-app.post('/api/students', notImplemented);
+//Enable JSON request body parsing
+app.use(express.json());
+
+app.post('/api/students', studentControllers.createStudent);
 app.get('/api/students/:studentName', studentControllers.getAllStudents);
 app.get('/api/students/:studentName/finalExam', notImplemented);
 app.post('/api/students/:studentname/finalExam', notImplemented);
