@@ -53,3 +53,8 @@ type OverallGrade = {
   overallGrade: number;
   letterGrade: string;
 };
+
+type StudentGradeParams = {
+  studentName: string;
+  assignmentName: string;
+};

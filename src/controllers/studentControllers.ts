@@ -4,6 +4,7 @@ import {
   addStudent,
   calculateFinalExamScores,
   getLetterGrade,
+  updateStudentGrade,
 } from '../models/studentModels';
 
 function getAllStudents(req: Request, res: Response): void {
@@ -54,6 +55,7 @@ function createStudent(req: Request, res: Response): void {
 function getFinalExamScores(req: Request, res: Response): void {
   const { studentName } = req.params as StudentNameParam;
   const student = getStudentData(studentName);
+  console.log(studentName);
 
   if (!student) {
     res.sendStatus(404);
@@ -75,6 +77,7 @@ function getFinalExamScores(req: Request, res: Response): void {
 function calcFinalScore(req: Request, res: Response): void {
   const { studentName } = req.params as StudentNameParam;
   const student = getStudentData(studentName);
+  console.log(studentName);
 
   if (!student) {
     res.sendStatus(404);
@@ -89,4 +92,20 @@ function calcFinalScore(req: Request, res: Response): void {
   const gradeFinal: OverallGrade = { overallGrade, letterGrade };
   res.json(gradeFinal);
 }
-export default { getAllStudents, createStudent, getFinalExamScores, calcFinalScore };
+
+function updateGrade(req: Request, res: Response): void {
+  const student = req.params as StudentGradeParams;
+  const grade = req.body as AssignmentGrade;
+
+  const gradeUpdated: boolean = updateStudentGrade(
+    student.studentName,
+    student.assignmentName,
+    grade.grade
+  );
+  if (!gradeUpdated) {
+    res.sendStatus(404);
+    return;
+  }
+  res.sendStatus(202);
+}
+export default { getAllStudents, createStudent, getFinalExamScores, calcFinalScore, updateGrade };

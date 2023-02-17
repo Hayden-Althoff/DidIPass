@@ -71,6 +71,27 @@ function getLetterGrade(score: number): string {
   return 'F';
 }
 
+function updateStudentGrade(
+  studentName: string,
+  assignmentName: string,
+  newGrade: number
+): boolean {
+  const student = getStudentData(studentName);
+
+  if (!student) {
+    return false;
+  }
+  const assignment = student.weights.assignmentWeights.find(
+    (element) => element.name === assignmentName
+  );
+  if (!assignment) {
+    return false;
+  }
+  assignment.grade = newGrade;
+  student.currentAverage = calculateAverage(student.weights);
+  return true;
+}
+
 export {
   students,
   getStudentData,
@@ -78,4 +99,5 @@ export {
   calculateFinalExamScores,
   getStudent,
   getLetterGrade,
+  updateStudentGrade,
 };
