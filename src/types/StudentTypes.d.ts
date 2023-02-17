@@ -1,4 +1,3 @@
-
 type CourseGrade = {
   name: string;
   weight: number;
@@ -37,4 +36,20 @@ type StudentManager = Record<string, Student>;
 type NewStudentRequest = {
   name: string;
   weights: CourseGrades;
+};
+
+type StudentNameParam = {
+  studentName: string;
+};
+
+type gradesNeeded = {
+  A: number;
+  B: number;
+  C: number;
+  D: number;
+};
+
+type OverallGrade = {
+  overallGrade: number;
+  letterGrade: string;
 };

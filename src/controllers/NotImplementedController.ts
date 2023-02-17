@@ -1,7 +1,7 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 
-function notImplemented( req: Request, res: Response): void{
-  res.sendStatus(501); //501: Not Implemeted
+function notImplemented(req: Request, res: Response): void {
+  res.sendStatus(501); // 501: Not Implemeted
 }
 
 export { notImplemented };
